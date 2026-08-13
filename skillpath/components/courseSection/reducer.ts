@@ -3,11 +3,14 @@ import { Action, State } from "./types"
 export const initialState: State = {
     status: "idle",
     courses: [],
-    country: null,
+    country: "IN",
     error: null,
 }
 
-export function reducer(state: State, action: Action): State {
+export function reducer(
+    state: State,
+    action: Action
+): State {
     switch (action.type) {
         case "FETCH_START":
             return {
