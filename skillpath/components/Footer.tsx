@@ -1,13 +1,19 @@
 export default function Footer() {
     return (
         <footer className="footer">
-            <nav className="links" aria-label="Footer">
-                <a href="#">About</a>
-                <a href="#">Courses</a>
-                <a href="#">Contact</a>
-            </nav>
+            <div className="footer-inner">
+                <div className="footer-brand">
+                    <span>Skillpath</span>
+                </div>
 
-            <p>© 2026 Skillpath. All rights reserved.</p>
+                <nav className="links" aria-label="Footer">
+                    <a href="#">About</a>
+                    <a href="#">Courses</a>
+                    <a href="#">Contact</a>
+                </nav>
+
+                <p>© 2026 Skillpath. All rights reserved.</p>
+            </div>
 
             <style>{styles}</style>
         </footer>
@@ -16,47 +22,67 @@ export default function Footer() {
 
 const styles = `
 .footer {
-    padding: 48px 24px;
-    border-top: 1px solid #eee;
-    text-align: center;
-    background: #fafafa;
+    background: #0a0a0a;
+    padding: 48px 32px;
+    border-top: 1px solid #1a1a1a;
+}
+
+.footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-brand span {
+    font-family: var(--font-fjalla), sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    color: #f2f2f2;
 }
 
 .links {
     display: flex;
-    justify-content: center;
     gap: 28px;
-    margin-bottom: 18px;
 }
 
 .links a {
-    color: #555;
+    font-family: var(--font-fjalla), sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #444;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
+    transition: color 0.15s ease;
 }
 
 .links a:hover,
 .links a:focus-visible {
-    color: #111;
+    color: #f2f2f2;
 }
 
 .links a:focus-visible {
-    outline: 2px solid #111;
+    outline: 2px solid #f2f2f2;
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
 .footer p {
     margin: 0;
-    color: #999;
-    font-size: 13px;
+    font-family: var(--font-fjalla), sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #333;
 }
 
-@media (max-width: 600px) {
-    .links {
-        gap: 18px;
-        flex-wrap: wrap;
+@media (max-width: 640px) {
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
     }
 }
 `

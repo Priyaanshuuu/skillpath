@@ -103,98 +103,98 @@ export default function CourseSection({
 
     return (
         <section id="courses" className="course-section" aria-labelledby="course-heading">
-            <div className="course-header">
-                <span className="eyebrow" style={{ color: accentColor }}>
-                    Courses
-                </span>
-                <h2 id="course-heading">{heading}</h2>
-                <p>
-                    Hands-on, practical courses picked to help you build
-                    real skills, fast.
-                </p>
-            </div>
-
-            {state.status === "success" && state.courses.length > 0 && (
-                <div className="course-controls">
-                    <input
-                        type="search"
-                        aria-label="Search courses"
-                        placeholder="Search courses..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                    <select
-                        aria-label="Sort by price"
-                        value={sort}
-                        onChange={(e) =>
-                            setSort(e.target.value as typeof sort)
-                        }
-                    >
-                        <option value="default">Sort: Featured</option>
-                        <option value="low">Price: Low to High</option>
-                        <option value="high">Price: High to Low</option>
-                    </select>
+            <div className="course-section-inner">
+                <div className="course-header">
+                    <span className="cs-eyebrow">Courses</span>
+                    <h2 id="course-heading">{heading}</h2>
+                    <p>
+                        Hands-on, practical courses picked to help you build
+                        real skills, fast.
+                    </p>
                 </div>
-            )}
 
-            <div role="status" aria-live="polite">
-                {state.status === "loading" && (
-                    <div className="course-grid" aria-label="Loading courses">
-                        {Array.from({ length: 6 }).map((_, i) => (
-                            <div className="skeleton-card" key={i}>
-                                <div className="skeleton-line short" />
-                                <div className="skeleton-line title" />
-                                <div className="skeleton-line" />
-                                <div className="skeleton-line" />
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {state.status === "error" && (
-                    <div className="state-panel">
-                        <p className="state-title">Something went wrong</p>
-                        <p className="state-text">{state.error}</p>
-                        <button
-                            className="retry-button"
-                            style={{ background: accentColor }}
-                            onClick={retry}
+                {state.status === "success" && state.courses.length > 0 && (
+                    <div className="course-controls">
+                        <input
+                            type="search"
+                            aria-label="Search courses"
+                            placeholder="Search courses..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <select
+                            aria-label="Sort by price"
+                            value={sort}
+                            onChange={(e) =>
+                                setSort(e.target.value as typeof sort)
+                            }
                         >
-                            Try again
-                        </button>
+                            <option value="default">Sort: Featured</option>
+                            <option value="low">Price: Low to High</option>
+                            <option value="high">Price: High to Low</option>
+                        </select>
                     </div>
                 )}
 
-                {state.status === "success" && state.courses.length === 0 && (
-                    <div className="state-panel">
-                        <p className="state-title">No courses available</p>
-                        <p className="state-text">
-                            Check back soon — new courses are on the way.
-                        </p>
-                    </div>
-                )}
+                <div role="status" aria-live="polite">
+                    {state.status === "loading" && (
+                        <div className="course-grid" aria-label="Loading courses">
+                            {Array.from({ length: 6 }).map((_, i) => (
+                                <div className="skeleton-card" key={i}>
+                                    <div className="skeleton-line short" />
+                                    <div className="skeleton-line title" />
+                                    <div className="skeleton-line" />
+                                    <div className="skeleton-line" />
+                                </div>
+                            ))}
+                        </div>
+                    )}
 
-                {state.status === "success" && visibleCourses.length === 0 && state.courses.length > 0 && (
-                    <div className="state-panel">
-                        <p className="state-title">No matches found</p>
-                        <p className="state-text">
-                            Try a different search term.
-                        </p>
-                    </div>
-                )}
+                    {state.status === "error" && (
+                        <div className="state-panel">
+                            <p className="state-title">Something went wrong</p>
+                            <p className="state-text">{state.error}</p>
+                            <button
+                                className="retry-button"
+                                onClick={retry}
+                            >
+                                Try again
+                            </button>
+                        </div>
+                    )}
 
-                {state.status === "success" && visibleCourses.length > 0 && (
-                    <div className="course-grid">
-                        {visibleCourses.map((course) => (
-                            <CourseCard
-                                key={course.mangoId}
-                                course={course}
-                                country={state.country}
-                                accentColor={accentColor}
-                            />
-                        ))}
-                    </div>
-                )}
+                    {state.status === "success" && state.courses.length === 0 && (
+                        <div className="state-panel">
+                            <p className="state-title">No courses available</p>
+                            <p className="state-text">
+                                Check back soon — new courses are on the way.
+                            </p>
+                        </div>
+                    )}
+
+                    {state.status === "success" && visibleCourses.length === 0 && state.courses.length > 0 && (
+                        <div className="state-panel">
+                            <p className="state-title">No matches found</p>
+                            <p className="state-text">
+                                Try a different search term.
+                            </p>
+                        </div>
+                    )}
+
+                    {state.status === "success" && visibleCourses.length > 0 && (
+                        <div className="course-grid">
+                            {visibleCourses.map((course, i) => (
+                                <CourseCard
+                                    key={course.mangoId}
+                                    course={course}
+                                    country={state.country}
+                                    accentColor={accentColor}
+                                    index={i}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
 
             <style>{styles}</style>
@@ -204,53 +204,84 @@ export default function CourseSection({
 
 const styles = `
 .course-section {
+    background: #0a0a0a;
+    padding: 96px 0;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+.course-section-inner {
     max-width: 1180px;
     margin: 0 auto;
-    padding: 96px 24px;
+    padding: 0 32px;
 }
 
 .course-header {
-    max-width: 620px;
-    margin-bottom: 48px;
+    max-width: 640px;
+    margin-bottom: 56px;
+    animation: fadeUp 0.7s ease both;
 }
 
-.eyebrow {
+.cs-eyebrow {
     display: block;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-family: var(--font-fjalla), sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    color: #555;
+    margin-bottom: 16px;
 }
 
 .course-header h2 {
+    font-family: var(--font-fjalla), sans-serif;
     margin: 0;
-    font-size: clamp(30px, 4vw, 42px);
-    letter-spacing: -0.02em;
+    font-size: clamp(32px, 4.5vw, 52px);
+    letter-spacing: 0.01em;
     line-height: 1.1;
+    font-weight: 400;
+    color: #f2f2f2;
 }
 
 .course-header p {
     margin: 16px 0 0;
-    color: #666;
+    font-family: Georgia, serif;
+    color: #555;
     font-size: 17px;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .course-controls {
     display: flex;
     gap: 12px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     flex-wrap: wrap;
+    animation: fadeIn 0.5s 0.2s ease both;
 }
 
 .course-controls input,
 .course-controls select {
-    padding: 10px 14px;
-    border: 1px solid #e2e2e2;
-    border-radius: 10px;
+    padding: 11px 16px;
+    border: 1px solid #242424;
+    border-radius: 4px;
     font-size: 14px;
-    background: white;
+    font-family: var(--font-fjalla), sans-serif;
+    letter-spacing: 0.04em;
+    background: #111;
+    color: #f2f2f2;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.course-controls input::placeholder {
+    color: #444;
+}
+
+.course-controls input:focus,
+.course-controls select:focus {
+    border-color: #444;
+}
+
+.course-controls select option {
+    background: #111;
 }
 
 .course-controls input {
@@ -261,7 +292,15 @@ const styles = `
 .course-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 2px;
+    border: 1px solid #1e1e1e;
+}
+
+.course-grid > * {
+    border-radius: 0;
+    border: none;
+    border-right: 1px solid #1e1e1e;
+    border-bottom: 1px solid #1e1e1e;
 }
 
 @media (max-width: 960px) {
@@ -275,79 +314,83 @@ const styles = `
         grid-template-columns: 1fr;
     }
     .course-section {
-        padding: 64px 20px;
+        padding: 64px 0;
+    }
+    .course-section-inner {
+        padding: 0 20px;
     }
 }
 
 .skeleton-card {
-    min-height: 260px;
-    padding: 24px;
-    border: 1px solid #eee;
-    border-radius: 18px;
-    background: #fff;
+    min-height: 280px;
+    padding: 28px;
+    background: #111;
 }
 
 .skeleton-line {
-    height: 14px;
-    border-radius: 6px;
-    background: linear-gradient(90deg, #eee 25%, #f5f5f5 37%, #eee 63%);
-    background-size: 400% 100%;
-    animation: shimmer 1.4s ease infinite;
+    height: 13px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #1a1a1a 25%, #242424 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease infinite;
     margin-top: 14px;
 }
 
 .skeleton-line.short {
-    width: 40%;
+    width: 35%;
     margin-top: 0;
 }
 
 .skeleton-line.title {
-    width: 80%;
-    height: 20px;
-    margin-top: 24px;
-}
-
-@keyframes shimmer {
-    0% { background-position: 100% 0; }
-    100% { background-position: 0 0; }
+    width: 75%;
+    height: 22px;
+    margin-top: 22px;
 }
 
 .state-panel {
-    padding: 64px 24px;
+    padding: 80px 24px;
     text-align: center;
-    border: 1px dashed #e2e2e2;
-    border-radius: 18px;
+    border: 1px solid #1e1e1e;
 }
 
 .state-title {
+    font-family: var(--font-fjalla), sans-serif;
     margin: 0;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: #f2f2f2;
 }
 
 .state-text {
-    margin: 8px 0 20px;
-    color: #777;
+    margin: 10px 0 28px;
+    font-family: Georgia, serif;
+    color: #555;
     font-size: 15px;
 }
 
 .retry-button {
-    border: 0;
-    color: white;
-    padding: 12px 22px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
+    border: 1px solid #333;
+    background: transparent;
+    color: #f2f2f2;
+    padding: 12px 28px;
+    font-family: var(--font-fjalla), sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .retry-button:hover {
-    opacity: 0.9;
+    background: #1a1a1a;
+    border-color: #444;
 }
 
 .retry-button:focus-visible {
-    outline: 2px solid #111;
-    outline-offset: 2px;
+    outline: 2px solid #f2f2f2;
+    outline-offset: 3px;
 }
 `
 

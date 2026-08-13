@@ -3,29 +3,30 @@
 export default function Hero() {
     return (
         <section className="hero" aria-labelledby="hero-heading">
-            <span className="eyebrow">Learn. Build. Grow.</span>
+            <div className="hero-inner">
+                <span className="hero-eyebrow">Learn. Build. Grow.</span>
 
-            <h1 id="hero-heading">
-                Build skills that
-                <br />
-                move you forward.
-            </h1>
+                <h1 id="hero-heading">
+                    Build skills that<br />move you forward.
+                </h1>
 
-            <p>
-                Practical courses designed to help you learn useful skills
-                and put them into action.
-            </p>
+                <p className="hero-sub">
+                    Practical courses designed to help you learn useful skills
+                    and put them into action.
+                </p>
 
-            <button
-                type="button"
-                onClick={() =>
-                    document
-                        .getElementById("courses")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                }
-            >
-                Explore Courses
-            </button>
+                <button
+                    type="button"
+                    className="hero-cta"
+                    onClick={() =>
+                        document
+                            .getElementById("courses")
+                            ?.scrollIntoView({ behavior: "smooth" })
+                    }
+                >
+                    Explore Courses →
+                </button>
+            </div>
 
             <style>{styles}</style>
         </section>
@@ -34,74 +35,93 @@ export default function Hero() {
 
 const styles = `
 .hero {
-    min-height: 600px;
-    padding: 120px 24px;
+    background: #0a0a0a;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    box-sizing: border-box;
-    background:
-        radial-gradient(circle at 50% 0%, #f2f1ff 0%, #fafafa 55%, #ffffff 100%);
+    justify-content: center;
+    padding: 0 24px;
+    border-bottom: 1px solid #1e1e1e;
 }
 
-.eyebrow {
-    margin-bottom: 22px;
+.hero-inner {
+    max-width: 860px;
+    text-align: center;
+    animation: fadeUp 0.8s ease both;
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    font-family: var(--font-fjalla), sans-serif;
     font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #6b6b6b;
+    color: #666;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
 }
 
 .hero h1 {
-    margin: 0;
-    max-width: 820px;
-    font-size: clamp(40px, 7vw, 84px);
-    line-height: 1.02;
-    letter-spacing: -0.04em;
-    font-weight: 600;
+    font-family: var(--font-sekuya), Georgia, serif;
+    font-size: clamp(52px, 9vw, 112px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: #f2f2f2;
+    margin: 0 0 32px;
+    font-weight: 400;
+    animation: fadeUp 0.7s 0.1s ease both;
 }
 
-.hero p {
-    max-width: 560px;
-    margin: 26px 0;
-    color: #666;
-    font-size: 18px;
-    line-height: 1.6;
+.hero-sub {
+    font-family: Georgia, serif;
+    font-size: 19px;
+    line-height: 1.7;
+    color: #777;
+    max-width: 520px;
+    margin: 0 auto 44px;
+    animation: fadeUp 0.7s 0.2s ease both;
 }
 
-.hero button {
-    margin-top: 12px;
-    padding: 15px 28px;
-    border: 0;
-    border-radius: 10px;
-    background: #111;
-    color: white;
+.hero-cta {
+    font-family: var(--font-fjalla), sans-serif;
     font-size: 15px;
-    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 14px 32px;
+    background: #f2f2f2;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
+    animation: fadeUp 0.7s 0.3s ease both;
 }
 
-.hero button:hover {
-    opacity: 0.85;
+.hero-cta:hover {
+    background: #ffffff;
+    transform: translateY(-1px);
 }
 
-.hero button:active {
-    transform: translateY(1px);
+.hero-cta:active {
+    transform: translateY(0);
 }
 
-.hero button:focus-visible {
-    outline: 2px solid #111;
+.hero-cta:focus-visible {
+    outline: 2px solid #f2f2f2;
     outline-offset: 3px;
 }
 
 @media (max-width: 640px) {
     .hero {
-        min-height: 480px;
-        padding: 88px 20px;
+        min-height: 90vh;
+        padding: 80px 20px;
+        align-items: flex-start;
+        padding-top: 20vh;
+    }
+    .hero-inner {
+        text-align: left;
+    }
+    .hero-sub {
+        margin-left: 0;
     }
 }
 `

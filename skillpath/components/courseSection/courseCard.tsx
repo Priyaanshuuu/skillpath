@@ -5,20 +5,22 @@ type Props = {
     course: Course
     country: CountryCode | null
     accentColor?: string
+    index?: number
 }
 
 export default function CourseCard({
     course,
     country,
-    accentColor = "#4f46e5",
+    accentColor = "#f2f2f2",
+    index = 0,
 }: Props) {
     return (
-        <article className="course-card">
+        <article
+            className="course-card"
+            style={{ animationDelay: `${index * 0.06}s` }}
+        >
             <div className="course-card-top">
-                <span className="course-category">
-                    {course.mainCategory}
-                </span>
-
+                <span className="course-category">{course.mainCategory}</span>
                 {course.refundable && (
                     <span className="refundable">Refundable</span>
                 )}
@@ -45,23 +47,20 @@ const styles = `
 .course-card {
     display: flex;
     flex-direction: column;
-    min-height: 260px;
-    padding: 26px;
-    border: 1px solid #e8e8e8;
-    border-radius: 18px;
-    background: white;
+    min-height: 280px;
+    padding: 28px;
+    border: 1px solid #242424;
+    border-radius: 4px;
+    background: #111111;
     box-sizing: border-box;
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    animation: fadeUp 0.5s ease both;
 }
 
 .course-card:hover,
 .course-card:focus-within {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-    border-color: #d8d8d8;
+    border-color: #3a3a3a;
+    transform: translateY(-3px);
 }
 
 .course-card-top {
@@ -72,41 +71,46 @@ const styles = `
 }
 
 .course-category {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+    font-family: var(--font-fjalla), sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #888;
+    color: #555;
 }
 
 .refundable {
-    padding: 5px 10px;
-    border-radius: 999px;
-    background: #eef8f0;
-    color: #2f7a3d;
-    font-size: 11px;
-    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid #2a4a2e;
+    color: #4ade80;
+    font-family: var(--font-fjalla), sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     white-space: nowrap;
 }
 
 .course-content {
     flex: 1;
-    margin-top: 20px;
+    margin-top: 22px;
 }
 
 .course-content h3 {
+    font-family: var(--font-fjalla), sans-serif;
     margin: 0;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    color: #f2f2f2;
 }
 
 .course-content p {
     margin: 10px 0 0;
-    color: #6b6b6b;
-    font-size: 14.5px;
-    line-height: 1.6;
+    font-family: Georgia, serif;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.65;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -118,18 +122,23 @@ const styles = `
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    margin-top: 22px;
-    padding-top: 16px;
-    border-top: 1px solid #f0f0f0;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #1e1e1e;
 }
 
 .course-type {
-    font-size: 13px;
-    color: #888;
+    font-family: var(--font-fjalla), sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #444;
 }
 
 .course-bottom strong {
-    font-size: 19px;
-    font-weight: 700;
+    font-family: var(--font-fjalla), sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #f2f2f2;
 }
 `
