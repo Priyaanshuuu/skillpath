@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://syncsphere-hiv6.onrender.com/assignment/country-code)",
+      "Bash(curl -s https://syncsphere-hiv6.onrender.com/assignment/course-data)",
+      "Bash(for i:*)",
+      "Bash(do curl:*)",
+      "Bash(done)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx next:*)"
+    ]
+  }
+}

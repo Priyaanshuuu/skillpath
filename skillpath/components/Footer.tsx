@@ -1,11 +1,11 @@
 export default function Footer() {
     return (
         <footer className="footer">
-            <div className="links">
+            <nav className="links" aria-label="Footer">
                 <a href="#">About</a>
                 <a href="#">Courses</a>
                 <a href="#">Contact</a>
-            </div>
+            </nav>
 
             <p>© 2026 Skillpath. All rights reserved.</p>
 
@@ -16,22 +16,35 @@ export default function Footer() {
 
 const styles = `
 .footer {
-    padding: 40px 24px;
-    border-top: 1px solid #e8e8e8;
+    padding: 48px 24px;
+    border-top: 1px solid #eee;
     text-align: center;
+    background: #fafafa;
 }
 
 .links {
     display: flex;
     justify-content: center;
-    gap: 24px;
-    margin-bottom: 16px;
+    gap: 28px;
+    margin-bottom: 18px;
 }
 
 .links a {
     color: #555;
     text-decoration: none;
     font-size: 14px;
+    font-weight: 500;
+}
+
+.links a:hover,
+.links a:focus-visible {
+    color: #111;
+}
+
+.links a:focus-visible {
+    outline: 2px solid #111;
+    outline-offset: 3px;
+    border-radius: 4px;
 }
 
 .footer p {
@@ -42,7 +55,7 @@ const styles = `
 
 @media (max-width: 600px) {
     .links {
-        gap: 16px;
+        gap: 18px;
         flex-wrap: wrap;
     }
 }
