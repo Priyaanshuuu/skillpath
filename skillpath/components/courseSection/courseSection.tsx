@@ -292,15 +292,12 @@ const styles = `
 .course-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    border: 1px solid #1e1e1e;
+    gap: 20px;
 }
 
-.course-grid > * {
-    border-radius: 0;
-    border: none;
-    border-right: 1px solid #1e1e1e;
-    border-bottom: 1px solid #1e1e1e;
+.course-grid:has(.course-card:hover) .course-card:not(:hover) {
+    transform: scale(0.95);
+    opacity: 0.6;
 }
 
 @media (max-width: 960px) {

@@ -47,20 +47,21 @@ const styles = `
 .course-card {
     display: flex;
     flex-direction: column;
-    min-height: 280px;
-    padding: 28px;
+    min-height: 240px;
+    padding: 22px;
     border: 1px solid #242424;
     border-radius: 4px;
     background: #111111;
     box-sizing: border-box;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
     animation: fadeUp 0.5s ease both;
 }
 
 .course-card:hover,
 .course-card:focus-within {
     border-color: #3a3a3a;
-    transform: translateY(-3px);
+    transform: scale(1.04);
+    z-index: 1;
 }
 
 .course-card-top {
